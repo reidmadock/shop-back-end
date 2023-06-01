@@ -30,7 +30,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new tag
   try {
-    const tagData = await Tag.create(req.body);
+    const tagData = await Tag.create({ tag_name: req.body.tag_name});
     res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
@@ -65,12 +65,12 @@ router.delete('/:id', async (req, res) => {
       },
     });
 
-    if (!categoryData) {
+    if (!tagData) {
       res.status(404).json({ message: 'No tag found with that id!' });
       return;
     }
 
-    res.status(200).json(tagData);
+    res.status(200).json(`Succesfully deleted tag code: ${tagData}`);
   } catch (err) {
     res.status(500).json(err);
   }
