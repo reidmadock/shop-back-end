@@ -35,8 +35,7 @@ Product.init(
         isInt: 'true'
       },
     },
-    //store refence of category this product belongs to.
-    category_id: {
+    category_id: { //store refence of category this product belongs to.
       type: DataTypes.INTEGER,
       references: {
         model: 'category',
@@ -54,12 +53,3 @@ Product.init(
 );
 
 module.exports = Product;
-
-// },
-// reader_id: {
-//   type: DataTypes.INTEGER,
-//   references: {
-//     model: 'reader',
-//     key: 'id',
-//   },
-// },
