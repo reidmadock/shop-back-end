@@ -41,14 +41,15 @@ router.post('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
-// TODO: Not sure if this is the correct way to use update
-// Tested, works
+/*
+ Updating a category fortunately does not require deleting anything.
+*/
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
   try {
     const categoryData = await Category.update(
       req.body,
-      { where: {id: req.params.id },
+      { where: {id: req.params.id }
     });
 
     if (!categoryData) {
@@ -61,14 +62,17 @@ router.put('/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
-//requires testing
+/*
+ Delete a category. Default behavior is 'onDelete: SET NULL'
+ So products belonging to this category will now have a null value.
+*/
 router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
   try {
     const categoryData = await Category.destroy({
       where: {
         id: req.params.id,
-      },
+      }
     });
 
     if (!categoryData) {
